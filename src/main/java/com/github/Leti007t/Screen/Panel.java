@@ -20,7 +20,7 @@ public class Panel extends JPanel {
     private ImageIcon originalLose = new ImageIcon(getClass().getResource("/images/lose.png"));
     private ImageIcon originalDraw = new ImageIcon(getClass().getResource("/images/draw.png"));
     private ImageIcon originalBlackjack = new ImageIcon(getClass().getResource("/images/blackJack.png"));
-    private ImageIcon originalPokerchip = new ImageIcon(getClass().getResource("/images/pokerchip.png"));
+    public ImageIcon originalPokerchip = new ImageIcon(getClass().getResource("/images/pokerchip.png"));
 
     public Cards cards;
 

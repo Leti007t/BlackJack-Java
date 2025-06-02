@@ -14,5 +14,6 @@ public class Frame extends JFrame {
         setTitle("Blackjack");
         add(panel);
         pack();
+        setIconImage(panel.originalPokerchip.getImage());
     }
 }
