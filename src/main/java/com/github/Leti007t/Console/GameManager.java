@@ -4,6 +4,8 @@ import com.github.Leti007t.Dealer.Cards;
 import com.github.Leti007t.Dealer.Round;
 import com.github.Leti007t.Screen.Panel;
 
+//controls the start of a new blackjack round
+// creates start and again buttons and adds the functions
 public class GameManager {
     Panel panel;
     Round round;

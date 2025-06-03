@@ -6,7 +6,9 @@ import com.github.Leti007t.Screen.Panel;
 
 import javax.swing.*;
 
-
+//manages the sequence and order of a single round
+//also creates the playing buttons ("Ziehen"/"Halten")
+//calculates the winner of a round
 public class Round {
 
     Cards cards;
@@ -15,9 +17,6 @@ public class Round {
     Console console;
     Panel mypanel;
     Player.Bank bank;
-
-
-
 
     public Round (Cards cards, Player.Player player, DealerBot dealerBot, Console console, Panel panel, Player.Bank bank){
         this.cards=cards;
@@ -28,33 +27,31 @@ public class Round {
         this.bank = bank;
     }
 
-
     public void startRound() {
         player.startRound();
         dealerBot.startRound();
-        System.out.println();//in frontend unnötig
-        if(dealerBot.isPlaying && player.isPlaying){
+        if(dealerBot.isPlaying && player.isPlaying){ //play round if there is no blackjack before
 
             mypanel.hitButton.addActionListener(e -> {
-                if (dealerBot.isPlaying && player.isPlaying){
+                if ( player.isPlaying){
                     player.playRound();
-                    if (!(player.isAlive)){
+                    if (!(player.isAlive)){// if the players hand is over 21 he loses
                         bank.loses++;
-                        console.printAnotherRound(); //wenn player überkauft, kommt nochmal button
+                        console.printAnotherRound();
                         console.printStats(bank.wins, bank.loses);
                     }
                 }
             });
 
-            if(player.isPlaying){
+            if(player.isPlaying){ //player hand value <21 and no blackjack
 
                 mypanel.holdButton.addActionListener(e -> {
-                    if (dealerBot.isPlaying && player.isPlaying){
+                    if (dealerBot.isPlaying){
                         player.isPlaying = false;
                         dealerBot.playRound();
                         if (!(dealerBot.isAlive)){
                             bank.wins++;
-                            console.printAnotherRound(); //wenn dealer überkauft, kommt nochmal button
+                            console.printAnotherRound();
                             console.printStats(bank.wins, bank.loses);
                         }
                         endRound();
@@ -63,17 +60,17 @@ public class Round {
             }
         }
 
-        else if (player.isPlaying){
+        else if (player.isPlaying){ //if player has no blackjack but dealer, the player loses
             bank.loses++;
             console.printStats(bank.wins, bank.loses);
         }
-        else if (dealerBot.isPlaying) {
+        else if (dealerBot.isPlaying) { // if player has a blackjack and dealer has no blackjack, the player wins
             bank.wins++;
             console.printStats(bank.wins, bank.loses);
         }
     }
 
-    private void endRound(){
+    private void endRound(){ //determines who won if player and dealer hand values are <21 and there is no blackjack
         if (dealerBot.isAlive && player.isAlive){
             if (player.value>dealerBot.value){
                 console.printPlayerWin();

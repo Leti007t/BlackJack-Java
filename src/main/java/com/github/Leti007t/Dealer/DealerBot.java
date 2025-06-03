@@ -3,9 +3,7 @@ package com.github.Leti007t.Dealer;
 
 import com.github.Leti007t.Console.Console;
 
-import java.util.Scanner;
-
-
+//bot player class
 public class DealerBot extends Player.Player {
 
 
@@ -17,7 +15,7 @@ public class DealerBot extends Player.Player {
     @Override
     public void playRound(){
         console.showHiddenCard(hand.get(1));
-        while (true) { //vorher !blackjack
+        while (true) {
 
             if (value<17) {
                 newCard();
@@ -34,11 +32,10 @@ public class DealerBot extends Player.Player {
     }
 
     @Override
-    protected Card getCard (){
+    protected void getCard (){
         Card card = cards.randomCard();
         card.yPosition= 10;
         hand.add(card);
-        return card;
     }
     @Override
     protected void newCard(){
@@ -59,7 +56,7 @@ public class DealerBot extends Player.Player {
     }
     @Override
     protected void getBlackJack(){
-        if(value== 21){ //vorher hand.size geprüft
+        if(value== 21){
             console.printCard(hand);
             console.printBlackJack("Dealer");
             isPlaying = false;

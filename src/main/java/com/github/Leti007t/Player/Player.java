@@ -9,7 +9,7 @@ import com.github.Leti007t.Dealer.Cards;
 
 import java.util.ArrayList;
 
-
+//player class
 public class Player {
     public int value;
     public boolean isPlaying;
@@ -30,8 +30,6 @@ public class Player {
         hand.clear();
         isPlaying=true;
         isAlive = true;
-        System.out.println(); //in frontend unnötig
-        System.out.println(name+" Karten:"); //console Parameter , aber in frontend unnötig
         newCard();
         newCard();
     }
@@ -45,13 +43,11 @@ public class Player {
         }
     }
 
-
-    protected Card getCard (){ //Auf Spieler
+    protected void getCard (){ //Auf Spieler
         Card card = cards.randomCard();
         card.yPosition= 483;
         hand.add(card);
         console.printCard(hand);
-        return card;
     }
 
     protected int getCardValue(int i){
@@ -89,9 +85,6 @@ public class Player {
         getCard();
         getHandValue();
 
-        if(hand.size() > 1){
-            System.out.println("Dein Stand: "+value);//console Parameter , aber in frontend unnötig
-        }
         if(hand.size()==2){
             getBlackJack();
         }

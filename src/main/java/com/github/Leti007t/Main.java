@@ -10,6 +10,7 @@ import com.github.Leti007t.Screen.Panel;
 
 import javax.swing.*;
 
+//manages all the class relations and creates all instances
 public class Main {
     public static void main(String[] args) {
 

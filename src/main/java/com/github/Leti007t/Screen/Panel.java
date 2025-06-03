@@ -4,10 +4,9 @@ import com.github.Leti007t.Dealer.Cards;
 
 import javax.swing.*;
 import java.awt.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-
+//manages all the gui components of the game like buttons, labels, or background
 public class Panel extends JPanel {
     private Image originalBackground = new ImageIcon(getClass().getResource("/images/background.png")).getImage();
     private ImageIcon ziehenPokerChip = new ImageIcon(getClass().getResource("/images/ziehenPokerchip.png"));
@@ -39,28 +38,30 @@ public class Panel extends JPanel {
     this.cards = cards;
     }
 
-    @Override // methode zum Festlegen der Panel-Maße
+    @Override //scales the panel to the size of the frame
     public Dimension getPreferredSize() {
         return new Dimension(1024, 720);
     }
 
-    @Override //methode zum Aufrufen eines Konstruktors, der ein gewisses Bild malt
+    @Override //paints the background
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(originalBackground, 0, 0, 1024, 720, this);
     }
 
+    //updates the panel
     private void refresh(){
         revalidate();
         repaint();
     }
 
-    //Bild wird zu skaliertem Bild mit scaled(Bild, width, height)
+    //scales ImageIcon to a scaled ImageIcon
     private ImageIcon scaled (ImageIcon icon, int width, int height){
         Image scaled = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(scaled);
     }
 
+    //removes the standard design of the swing JButtons
     private void removeBox(JButton button){
         button.setBorderPainted(false);
         button.setFocusPainted(false);
@@ -69,7 +70,6 @@ public class Panel extends JPanel {
 
 
     public void createStartButton(){
-        System.out.println("test");
         startButton = new JButton(scaled(buttonStart, 175, 175));
         startButton.setBounds(452, 300, 120, 120);
         removeBox(startButton);
@@ -170,19 +170,19 @@ public class Panel extends JPanel {
             refresh();
         }
 
-        else{
+        else{ // in the rare case of more than 6 cards on a hand
             int y;
             int cardWidth= (int) (954/hand.size());
             int cardHeight= (int) (cardWidth*1.425);
 
-            if (card.yPosition == 10){
+            if (card.yPosition == 10){//dealer
                 for (JLabel label : dealerCards){
                     remove(label);
                 }
                 dealerCards.clear();
                 y=10;
             }
-            else {
+            else {//player
                 for (JLabel label : playerCards){
                     remove(label);
                 }

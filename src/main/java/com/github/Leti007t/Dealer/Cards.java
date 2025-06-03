@@ -8,13 +8,13 @@ package com.github.Leti007t.Dealer;
 import java.util.ArrayList;
 import java.util.Random;
 
+//methods to create the playing cards and to pick a random card
 public class Cards {
     Random random= new Random();
     public ArrayList<Card> cards = new ArrayList<Card>();
     private String [] cardnames = new String[14];
 
     public Cards(){
-        assignCardNames();
     }
 
     public void shuffle (){
@@ -34,23 +34,5 @@ public class Cards {
         cards.remove(i-1);
         return tempCard;
     }
-
-    public void assignCardNames(){ //backend test only
-        cardnames[1]="Ass";
-        for (int i =2; i<=10; i++){
-            cardnames[i]=""+i;
-        }
-        cardnames[11] = "Bube";
-        cardnames[12] = "Dame";
-        cardnames[13] = "König";
-    }
-
-    public String getCardName (Card card){
-        int number;
-        int color;
-        return card.color + "" + card.number;
-
-        }
-
 
 }

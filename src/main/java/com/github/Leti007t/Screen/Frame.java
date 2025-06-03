@@ -1,9 +1,8 @@
 package com.github.Leti007t.Screen;
 
-import com.github.Leti007t.Console.Console;
-
 import javax.swing.*;
 
+//sets the game window
 public class Frame extends JFrame {
     Panel panel;
     public Frame(Panel panel){

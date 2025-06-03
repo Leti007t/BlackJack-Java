@@ -1,7 +1,7 @@
 package com.github.Leti007t.Dealer;
 
-import javax.swing.*;
 
+//every card is an instance of this class with all the important values
 public class Card {
     public int number;
     public int color;
